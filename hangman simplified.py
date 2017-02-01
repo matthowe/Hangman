@@ -59,8 +59,7 @@ def guessLetter(word):
        # have you won
        displayWordStr =""
        for i in displayWord:
-          displayWordStr = displayWordStr + i
-          
+          displayWordStr = displayWordStr + i         
        if displayWordStr == word: #see if the displayWordStr matches the word
           print("YOU HAVE WON")
           return
