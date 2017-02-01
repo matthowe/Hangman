@@ -15,28 +15,30 @@ def guessLetter(word):
     miss = 0 #counts the number of missed letters
     displayWord = [] #displays the word being guessed
     for i in range(len(word)):
-       displayWord.append("*") #initially displays the word's letters as *s
+       displayWord.append("-") #initially sets the displayed word's letters as hyphens
    
     while miss != 8: #game will loop until number of misses is 8 
-       for i in displayWord:
+       for i in displayWord: #displays the word to guess '-' if letter not found
           print(i,end="")
        print()
        print("Used Letters = ",end="")
-       usedLetters.sort()
-       for i in usedLetters:
+
+       for i in usedLetters: #display used letters
           print(i,end="")
        print()
-       print("Misses = ",miss)
-       guess = input("Guess a Letter? ",)
+       print("Misses = ",miss)#diplay misses
+       
+       guess = input("Guess a Letter? ",) 
 
-       found = False   
+       found = False #marks if the guessed letter has been found in the word   
 
        if guess in usedLetters:
           print("You have used that letter before")
               
        elif found == False:
           miss = miss + 1
-          usedLetters.append(guess)   
+          usedLetters.append(guess)
+          usedLetters.sort() 
        charPosition = 0
 
        for i in word:
