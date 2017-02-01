@@ -18,6 +18,8 @@ def guessLetter(word):
        displayWord.append("-") #initially sets the displayed word's letters as hyphens
    
     while miss != 8: #game will loop until number of misses is 8 
+
+       """Display""" 
        for i in displayWord: #displays the word to guess '-' if letter not found
           print(i,end="")
        print()
@@ -27,36 +29,41 @@ def guessLetter(word):
           print(i,end="")
        print()
        print("Misses = ",miss)#diplay misses
-       
+
+
+       """Guess"""
        guess = input("Guess a Letter? ",) 
 
-       found = False #marks if the guessed letter has been found in the word   
-
-       if guess in usedLetters:
-          print("You have used that letter before")
-              
-       elif found == False:
-          miss = miss + 1
-          usedLetters.append(guess)
-          usedLetters.sort() 
        charPosition = 0
+       
+       if guess in usedLetters or guess in displayWord: #if letter has been used before
+          print("You have used that letter before")
 
-       for i in word:
-          if guess == i:
-             displayWord[charPosition] = i
-             found = True
-          charPosition = charPosition + 1
+       elif guess in word: #if guess is correct
+           for i in word:
+              if guess == i:
+                 displayWord[charPosition] = i
+              charPosition = charPosition + 1
 
-       # Have you guessed the word correctly
-       displayWordStr = "" #convert the displayWord list into a string
-       for i in displayWord:
-          displayWordStr = displayWordStr + i
-         
+       else: #if letter not used before and not right
+           miss = miss + 1
+           usedLetters.append(guess)
+           usedLetters.sort() 
+           
+       """Game state"""
+
+       # have you lost         
        if miss == 8:
           print("YOU HAVE LOST")
-         
+
+       # have you won
+       displayWordStr =""
+       for i in displayWord:
+          displayWordStr = displayWordStr + i
+          
        if displayWordStr == word: #see if the displayWordStr matches the word
           print("YOU HAVE WON")
+          return
   
 
 words = getWord() # gets words
